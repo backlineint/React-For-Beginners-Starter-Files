@@ -32,6 +32,24 @@ class App extends React.Component {
         context: this,
         state: 'fishes'
       });
+
+    // Check if there is any order in localStorage
+    const localStorageRef = localStorage.getItem(`order-${this.props.params.storeId}`);
+
+    if(localStorageRef) {
+      // Update app component's order state
+      this.setState({
+        order: JSON.parse(localStorageRef)
+      });
+    }
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    // Pass variables in {} and the console will name them.
+    //console.log({nextProps, nextState});
+    localStorage.setItem(`order-${this.props.params.storeId}`, JSON.stringify(nextState.order));
+    // Currently we get a flash of the default component, could use the ShouldComponentUpdate
+    // lifecycle method to be more specific about when the order component should re-render.
   }
 
   componentWillUnmount() {
@@ -82,7 +100,11 @@ class App extends React.Component {
             }
           </ul>
         </div>
-        <Order fishes={this.state.fishes} order={this.state.order} />
+        <Order
+          fishes={this.state.fishes}
+          order={this.state.order}
+          params={this.props.params}
+        />
         { /* Passsing methods down via props */ }
         <Inventory addFish={this.addFish} loadSamples={this.loadSamples} />
       </div>
