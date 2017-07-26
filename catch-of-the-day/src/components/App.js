@@ -14,18 +14,26 @@ class App extends React.Component {
     // Need to bind all new methods, kind of like what we had to do in angular.
     // Kind of annoying, hopefully future versions of React can improve this.
     this.addFish = this.addFish.bind(this);
-    this.loadSamples = this.loadSamples.bind(this);
+    // Removing this binding and instead use a property initializer below.
+    // this.loadSamples = this.loadSamples.bind(this);
     this.addToOrder = this.addToOrder.bind(this);
     this.removeFromOrder = this.removeFromOrder.bind(this);
     this.updateFish = this.updateFish.bind(this);
     this.removeFish = this.removeFish.bind(this);
 
     // Initial state / getInitialState (older approach)
-    this.state = {
+    // Using modern ES6 we can also move this initialization out of the constructor
+    /*this.state = {
       fishes: {},
       order: {}
-    };
+    };*/
   }
+
+  // Example of property initializer
+  state = {
+    fishes: {},
+    order: {}
+  };
 
   // Example of a react lifecycle method.
   componentWillMount() {
@@ -86,11 +94,13 @@ class App extends React.Component {
     this.setState({fishes});
   }
 
-  loadSamples() {
+  // Use a property initializer so we can skip the bind step in the constructor.
+  // Arrow function binds to parent.
+  loadSamples = () => {
     this.setState({
       fishes: sampleFishes
     });
-  }
+  };
 
   addToOrder(key) {
     // Take a copy of our state
@@ -144,6 +154,12 @@ class App extends React.Component {
       </div>
     )
   }
+
+  // Prop types could also go inside the component.
+  // Static because we don't need a new instance for every component.
+  /* static propTypes = {
+    params: React.PropTypes.object.isRequired
+  };*/
 }
 
 App.propTypes = {
