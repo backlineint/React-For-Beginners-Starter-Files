@@ -25,7 +25,7 @@
     "start": "react-scripts start",
     "watch": "concurrently --names \"webpack, stylus\" --prefix name \"npm run start\" \"npm run styles:watch\"",
     "build": "react-scripts build",
-    "build-gh-pages": "react-scripts build && mv build docs && cp docs/index.html docs/404.html",
+    "build-gh-pages": "react-scripts build && mv build ../docs && cp ../docs/index.html ../docs/404.html",
     "eject": "react-scripts eject",
     "styles": "stylus -u autoprefixer-stylus ./src/css/style.styl -o ./src/css/style.css",
     "styles:watch": "stylus -u autoprefixer-stylus -w ./src/css/style.styl -o ./src/css/style.css"
