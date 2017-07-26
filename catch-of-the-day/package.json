@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "http://brianperryinteractive.com/React-For-Beginners-Starter-Files/",
   "devDependencies": {
+    "@storybook/addon-knobs": "^3.1.9",
+    "@storybook/react": "^3.1.9",
     "autoprefixer-stylus": "0.10.0",
     "babel-eslint": "^7.1.1",
     "concurrently": "3.0.0",
@@ -29,7 +31,9 @@
     "build-gh-pages": "react-scripts build && mv build ../docs && cp ../docs/index.html ../docs/404.html",
     "eject": "react-scripts eject",
     "styles": "stylus -u autoprefixer-stylus ./src/css/style.styl -o ./src/css/style.css",
-    "styles:watch": "stylus -u autoprefixer-stylus -w ./src/css/style.styl -o ./src/css/style.css"
+    "styles:watch": "stylus -u autoprefixer-stylus -w ./src/css/style.styl -o ./src/css/style.css",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": "./node_modules/react-scripts/.eslintrc"
